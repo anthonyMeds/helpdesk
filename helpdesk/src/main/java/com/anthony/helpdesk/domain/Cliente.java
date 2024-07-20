@@ -1,18 +1,30 @@
 package com.anthony.helpdesk.domain;
 
+import com.anthony.helpdesk.domain.enuns.Perfil;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Cliente  extends Pessoa {
 
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    @OneToMany(mappedBy = "cliente")
     private List<Chamado> chamados = new ArrayList<>();
 
     public Cliente() {
         super();
+        addPerfil(Perfil.CLIENTE);
     }
 
     public Cliente(Integer id, String nome, String cpf, String senha) {
         super(id, nome, cpf, senha);
+        addPerfil(Perfil.CLIENTE);
     }
 
     public List<Chamado> getChamados() {
