@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping(value = "/tecnicos")
 public class TecnicoController {
@@ -28,6 +31,18 @@ public class TecnicoController {
         TecnicoDTO tecnicoDTO = new TecnicoDTO(tecnico);
 
         return ResponseEntity.ok(tecnicoDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TecnicoDTO>> findAll() {
+
+        List<Tecnico> tecnicos = service.findAll();
+
+        List<TecnicoDTO> tecnicoDTOList = tecnicos.stream()
+                .map( tecnico -> new TecnicoDTO(tecnico) )
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(tecnicoDTOList);
     }
 
 }
