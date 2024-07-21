@@ -1,4 +1,4 @@
-package com.anthony.helpdesk.resources;
+package com.anthony.helpdesk.controller;
 
 import com.anthony.helpdesk.domain.Tecnico;
 import com.anthony.helpdesk.domain.dtos.TecnicoDTO;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/tecnicos")
-public class TecnicoResource {
+public class TecnicoController {
 
     @Autowired
     private TecnicoService service;
