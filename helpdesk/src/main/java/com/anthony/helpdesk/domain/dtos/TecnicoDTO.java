@@ -3,6 +3,7 @@ package com.anthony.helpdesk.domain.dtos;
 import com.anthony.helpdesk.domain.Tecnico;
 import com.anthony.helpdesk.domain.enuns.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -16,12 +17,16 @@ public class TecnicoDTO implements Serializable {
 
     protected Integer id;
 
+    @NotNull(message = "O campo Nome é requerido")
     protected String nome;
 
+    @NotNull(message = "O campo cpf é requerido")
     protected String cpf;
 
+    @NotNull(message = "O campo email é requerido")
     protected String email;
 
+    @NotNull(message = "O campo senha é requerido")
     protected String senha;
 
     protected Set<Integer> perfis = new HashSet<>();
