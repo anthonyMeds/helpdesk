@@ -3,14 +3,6 @@ package com.anthony.helpdesk.domain.dtos;
 import com.anthony.helpdesk.domain.Tecnico;
 import com.anthony.helpdesk.domain.enuns.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,17 +10,18 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@NoArgsConstructor
 public class TecnicoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
     protected Integer id;
+
     protected String nome;
 
     protected String cpf;
 
     protected String email;
+
     protected String senha;
 
     protected Set<Integer> perfis = new HashSet<>();
@@ -44,6 +37,11 @@ public class TecnicoDTO implements Serializable {
         this.senha = obj.getSenha();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = obj.getDataCriacao();
+    }
+
+    public TecnicoDTO() {
+        super();
+        addPerfil(Perfil.CLIENTE);
     }
 
     public Integer getId() {
