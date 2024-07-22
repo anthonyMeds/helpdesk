@@ -75,4 +75,14 @@ public class TecnicoService {
 
     }
 
+    public void delete(Integer id) {
+
+        Tecnico tecnicoExistente =  findById(id);
+
+        if (tecnicoExistente.getChamados().size() > 0) {
+            throw new DataIntegrityException("Existem chamados associados a esse técnico");
+        }
+
+        tecnicoRepository.deleteById(id);
+    }
 }
